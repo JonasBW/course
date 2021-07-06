@@ -22,6 +22,17 @@ public class CourseRepository implements ICourseRepository{
         return this.courses;
     }
 
+
+    @Override
+    public Course getCourseById(String id) {
+        for (Course course : courses) {
+            if (course.getCourseId().equals(id)){
+                return course;
+            }
+        }
+        return null;
+    }
+
     @Override
     public Course saveCourse(Course course) {
         this.courses.add(course);

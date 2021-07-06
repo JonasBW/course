@@ -3,6 +3,8 @@ package com.campus.course.controllers;
 import com.campus.course.models.Course;
 import com.campus.course.repositories.ICourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +16,10 @@ public class CourseController {
     @Autowired
     private ICourseRepository courseRepository;
 
-    @GetMapping("single")
-    public Course getSingleCourse() {
-        Course course = new Course("201","Java Advanced", "Niveau 200", "Bas de Hoop");
+    @GetMapping(value="single/{id}", produces = "application/json")
+    public Course getSingleCourse(@PathVariable(name = "id", required = true) String id) {
+        Course course = courseRepository.getCourseById(id);
+
         return course;
     }
 
