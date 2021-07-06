@@ -1,4 +1,4 @@
-$(function getAllRooms() {
+$(function getAllCourses() {
         $.ajax({
             url: 'http://localhost:8080/api/courses/all',
             type: 'GET',
@@ -6,7 +6,7 @@ $(function getAllRooms() {
             dataType: "json"
         }).done(function (data) {
 
-            $('#roomTable').dataTable({
+            $('#courseTable').dataTable({
                 data: data,
                 columns: [
                     { data: "courseId", title: "Course Id" },
