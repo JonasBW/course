@@ -22,7 +22,6 @@ public class CourseRepository implements ICourseRepository{
         return this.courses;
     }
 
-
     @Override
     public Course getCourseById(String id) {
         for (Course course : courses) {
@@ -34,8 +33,15 @@ public class CourseRepository implements ICourseRepository{
     }
 
     @Override
-    public Course saveCourse(Course course) {
-        this.courses.add(course);
+    public Course removeCourse(Course course) {
+        courses.remove(course);
         return course;
     }
+
+    @Override
+    public Course createCourse(Course course) {
+        courses.add(course);
+        return course;
+    }
+
 }

@@ -10,26 +10,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/courses/")
+@RequestMapping("api/")
 public class CourseController {
 
     @Autowired
     private ICourseRepository courseRepository;
 
-    @GetMapping(value="single/{id}", produces = "application/json")
+    @GetMapping(value="course/{id}", produces = "application/json")
     public Course getSingleCourse(@PathVariable(name = "id", required = true) String id) {
         Course course = courseRepository.getCourseById(id);
 
         return course;
     }
 
-    @GetMapping("all")
+    @GetMapping("courses/all")
     public List<Course> getAllCourses() {
         return this.courseRepository.getCourses();
     }
 
-    @PostMapping("new")
-    public void createCourse(@RequestBody Course newCourse) {
-        this.courseRepository.saveCourse(newCourse);
+    @PutMapping(value = "/course/add", produces = "application/json")
+    public Course createCourse(@RequestBody Course course) {
+        return this.courseRepository.createCourse(course);
+    }
+
+    @DeleteMapping(value = "/course/delete/{id}", produces = "application/json", consumes = "application/json")
+    public Course removeCourse(@PathVariable(name = "id", required = true) String id) {
+        Course course = courseRepository.removeCourse(courseRepository.getCourseById(id));
+        return course;
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 public interface ICourseRepository {
 
     List<Course> getCourses();
-    Course saveCourse(Course course);
     Course getCourseById(String id);
+    Course removeCourse(Course courseById);
+    Course createCourse(Course course);
 }
