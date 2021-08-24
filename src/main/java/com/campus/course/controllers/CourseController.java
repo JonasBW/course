@@ -36,6 +36,7 @@ public class CourseController {
     @DeleteMapping(value = "/course/delete/{id}", produces = "application/json", consumes = "application/json")
     public Course removeCourse(@PathVariable(name = "id", required = true) String id) {
         Course course = courseRepository.removeCourse(courseRepository.getCourseById(id));
+        System.out.println("id = " + id);
         return course;
     }
 }
